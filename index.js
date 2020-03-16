@@ -43,6 +43,6 @@ app.use(artistRoutes);
 accountInfo.query("Select * from accounts WHERE username ='A00954785'AND password ='password'").then(data =>{
 	console.log(data[0][0].username);
 });
-app.listen(4000, () => console.log('Server ready @ port 4000'))
+app.listen(process.env.PORT, () => console.log('Server ready'))
 
 
