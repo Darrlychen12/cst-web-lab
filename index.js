@@ -3,7 +3,6 @@ let session = require('express-session');
 let app = express();
 let bodyParser = require('body-parser');
 let path = require('path');
-let accountInfo = require('./util/account')
 const expressHbs = require('express-handlebars');
 let loginRoute = require("./routes/index");
 
@@ -40,9 +39,6 @@ app.use(express.static(path.join(__dirname,'public')));
 
 app.use(artistRoutes);
 
-accountInfo.query("Select * from accounts WHERE username ='A00954785'AND password ='password'").then(data =>{
-	console.log(data[0][0].username);
-});
-app.listen(process.env.PORT, () => console.log('Server ready'))
+app.listen(process.env.PORT || 4000, () => console.log('Server ready'))
 
 
