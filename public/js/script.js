@@ -4,13 +4,13 @@ let data = fetch("/artists").then((res) => {
   console.log(JSON.stringify(data));
   if(data.length != 0) {
     data.forEach((artist) => {
-      addArtist(artist.artist, artist.about,artist.url,false);
+      addArtist(artist.name, artist.about,artist.imageURL,false);
     })
   }
 })
 
 const deleteUser = (event,name,url,about) => {
-  let artist =  {'artist': name, 'about': about, 'url':url};
+  let artist =  {'name': name, 'about': about, 'imageURL':url};
 
   fetch('/artist/delete', {
     method: 'POST',
@@ -54,7 +54,7 @@ function addArtist(name=null,about=null,url=null, store=true) {
     
     console.log(name + " " + about + " " + url)
     if (store){
-      let artist =  {'artist': name, 'about': about, 'url':url};
+      let artist =  {'name': name, 'about': about, 'imageURL':url};
       fetch('/artist/add', {
         method: 'POST',
         headers: {
