@@ -40,5 +40,3 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(artistRoutes);
 
 app.listen(process.env.PORT || 4000, () => console.log('Server ready'))
-
-

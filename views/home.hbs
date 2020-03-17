@@ -19,20 +19,30 @@
                 </div>
             </div>
             <div id="artists_hidden">
-                <div>
-                    <input id="artist" type="text" placeholder="Artist Name" maxlength="40" />
-                </div>
-                <div>
-                    <input id="about" type="text" placeholder="About artist" maxlength="40" />
-                </div>
-                <div>
-                    <input id="imageurl" type="text" placeholder="Image url" />
-                </div>
-                <div>
-                    <button onclick="addArtist()">Add</button>
-                </div>
+                   <form action="/artist/add" method="POST">
+                        <input type="text" id="name" name="name" maxlength="40" placeholder="Artist Name" />
+                        <br>
+                        <input type="text" id="info" name="info" maxlength="40" placeholder="About Artist"/>
+                        <br>
+                        <input type="text" id="url" name="url" placeholder="Image URL"/>
+                        <br>
+                        <button type="submit" id="addArtistB">Add</button>
+        </form>
             </div>
             <div id="artists_items">
+                {{#each people}}
+                        {{log  this}}
+                        <div class="artists">
+                            <img src='{{this.imageURL}}' />
+                            <div>
+                                <p><b>{{this.name}}</b></p>
+                                <p>{{this.about}}</p>
+                            </div>
+                        </div>
+   
+                {{/each}}
+
+                
 
             </div>
         </div>

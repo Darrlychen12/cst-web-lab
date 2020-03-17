@@ -1,28 +1,5 @@
-let data = fetch("/artists").then((res) => {
-  return res.json();
-}).then((data) => {
-  console.log(JSON.stringify(data));
-  if(data.length != 0) {
-    data.forEach((artist) => {
-      addArtist(artist.name, artist.about,artist.imageURL,false);
-    })
-  }
-})
 
-const deleteUser = (event,name,url,about) => {
-  let artist =  {'name': name, 'about': about, 'imageURL':url};
 
-  fetch('/artist/delete', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(artist)
-  }).then(res => {
-    console.log(res)
-  })
-  event.target.parentNode.parentNode.remove();
-};
 
 function createUserTemplate(name, about, url){
   return `<div class="artists_item">
@@ -44,36 +21,6 @@ function createUserTemplate(name, about, url){
 
 
 
-
-function addArtist(name=null,about=null,url=null, store=true) {
-    
-    var content = document.getElementById('artists_items')
-    var name = name? name: document.getElementById('artist').value;
-    var about = about? about: document.getElementById('about').value;
-    var url = url? url: document.getElementById('imageurl').value;
-    
-    console.log(name + " " + about + " " + url)
-    if (store){
-      let artist =  {'name': name, 'about': about, 'imageURL':url};
-      fetch('/artist/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(artist)
-      }).then(res => {
-        console.log(res)
-      })
-    
-
-    }
-    user = createUserTemplate(name,about, url);
-    content.insertAdjacentHTML('beforeend', user);
-    document.getElementById('imageurl').value = "";
-    document.getElementById('about').value="";
-    document.getElementById('artist').value="";
-
-}
 
 
 
